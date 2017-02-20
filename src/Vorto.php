@@ -2,13 +2,25 @@
 declare(strict_types=1);
 namespace Lekso;
 
+/**
+ * Reprezenti ludvorton
+ */
 class Vorto
 {
     protected $db;
+
+    /** @var string la nuntempa vorto */
     public $vorto;
+    /** @var array aro de vortoj, kiuj ĝis nun estis faritaj */
     public $celvortoj;
+    /** @var int kiom da poentoj valoras la vorto */
     public $poentoj;
 
+    /**
+     * Konstruilo
+     *
+     * @param PDO $db konekto al datumbazo, kiu havas permesitajn vortojn
+     */
     public function __construct(\PDO $db) {
         $this->db = $db;
         $this->vorto = '';
@@ -20,12 +32,24 @@ class Vorto
         return $this->vorto;
     }
 
+    /**
+     * Kalkuli, kiom da poentoj valoras la kartoj, kaj aldoni tiom al
+     * al poentoj de la vorto.
+     *
+     * @param array $kartoj valoroj de kartoj
+     */
     public function kalkuliPoentojn(array $kartoj) {
         $this->poentoj = array_reduce($kartoj, function (int $c, string $i): int {
             return $c + (int)(!Karto::ĉuSpeciala($i) && !Karto::ĉuAjna($i));
         }, $this->poentoj);
     }
 
+    /**
+     * Serĉi vorteblojn por la difinitaj kartoj.
+     *
+     * @param array $kartoj valoroj de kartoj
+     * @return array ebloj en tiu formo: [[kartoj], [vortoj], longeco]
+     */
     public function serĉi(array $kartoj): array {
         $ebloj = [];
         foreach (array_unique($kartoj) as $karto) {
