@@ -4,8 +4,6 @@
  * Simulado de la ludo Lekso
  */
 declare(strict_types=1);
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 chdir(dirname(__FILE__));
 require_once 'vendor/autoload.php';
@@ -92,8 +90,8 @@ for ($i = 0;; ++$i) {
     $vorto->celvortoj[] = $v;
     $vorto->kalkuliPoentojn($eblo[0]);
 
-    echo 'Ludanto ' . ($i + 1) . ' [' . join(', ', $ludantoj[$i]->kartoj) . 
-        '] metas ' . join (', ', $eblo[0]) . "\n";
+    echo 'Ludanto ' . ($i + 1) . ' [' . join(', ', $ludantoj[$i]->kartoj) .
+        '] metas ' . join(', ', $eblo[0]) . "\n";
     foreach ($eblo[0] as $litero) {
         $j = array_search($litero, $ludantoj[$i]->kartoj);
         unset($ludantoj[$i]->kartoj[$j]);

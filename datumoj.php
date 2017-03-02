@@ -1,13 +1,11 @@
 #! /usr/bin/php
 <?php
 /**
- * Elŝuti fontdosieron, kiu enhavas kapvortojn de PIV, kaj eltiri la
- * vortojn por meti en datumbazo. Tiu datumbazo devas esti starigita
- * antaŭ oni lanĉas la simuladon.
+ * Elŝuti fontdosieron, kiu enhavas kapvortojn de PIV, kaj eltiri la vortojn
+ * por meti en datumbazo. Tiu datumbazo devas esti starigita antaŭ oni lanĉas
+ * la simuladon.
  */
 declare(strict_types=1);
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 chdir(dirname(__FILE__));
 

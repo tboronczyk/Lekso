@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Lekso;
 
 /**
@@ -21,14 +22,16 @@ class Vorto
      *
      * @param PDO $db konekto al datumbazo, kiu havas permesitajn vortojn
      */
-    public function __construct(\PDO $db) {
+    public function __construct(\PDO $db)
+    {
         $this->db = $db;
         $this->vorto = '';
         $this->celvortoj = [];
         $this->poentoj = 0;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->vorto;
     }
 
@@ -38,7 +41,8 @@ class Vorto
      *
      * @param array $kartoj valoroj de kartoj
      */
-    public function kalkuliPoentojn(array $kartoj) {
+    public function kalkuliPoentojn(array $kartoj)
+    {
         $this->poentoj = array_reduce($kartoj, function (int $c, string $i): int {
             return $c + (int)(!Karto::ĉuSpeciala($i) && !Karto::ĉuAjna($i));
         }, $this->poentoj);
@@ -50,7 +54,8 @@ class Vorto
      * @param array $kartoj valoroj de kartoj
      * @return array ebloj en tiu formo: [[kartoj], [vortoj], longeco]
      */
-    public function serĉi(array $kartoj): array {
+    public function serĉi(array $kartoj): array
+    {
         $ebloj = [];
         foreach (array_unique($kartoj) as $karto) {
             switch ($karto) {
@@ -67,11 +72,12 @@ class Vorto
                 default:
                     $ebloj = array_merge($ebloj, $this->serĉiLitere($karto));
             }
-        } 
+        }
         return $ebloj;
     }
 
-    protected function serĉiSupersigne(string $karto): array {
+    protected function serĉiSupersigne(string $karto): array
+    {
         $mapo = ['C' => 'Ĉ', 'G' => 'Ĝ', 'H' => 'Ĥ',
                  'J' => 'Ĵ', 'S' => 'Ŝ', 'U' => 'Ŭ'];
         if ($karto == Karto::FORIGI) {
@@ -84,7 +90,7 @@ class Vorto
             if (!isset($mapo[$literoj[$i]])) {
                 continue;
             }
-            $peto = "SELECT vorto FROM vortoj WHERE vorto LIKE '" . 
+            $peto = "SELECT vorto FROM vortoj WHERE vorto LIKE '" .
                 mb_substr($this->vorto, 0, $i) . $mapo[$literoj[$i]] .
                 mb_substr($this->vorto, $i + 1) . "%'" . $this->petero();
             $rezulto = $this->db->query($peto);
@@ -98,7 +104,8 @@ class Vorto
         return $ebloj;
     }
 
-    protected function serĉiKomence(array $kartoj): array {
+    protected function serĉiKomence(array $kartoj): array
+    {
         $ebloj = [];
         foreach (array_unique($kartoj) as $karto) {
             if (Karto::ĉuSpeciala($karto)) {
@@ -121,7 +128,8 @@ class Vorto
         return $ebloj;
     }
 
-    protected function serĉiAnstataŭe(array $kartoj): array {
+    protected function serĉiAnstataŭe(array $kartoj): array
+    {
         $ebloj = [];
         $literoj = preg_split('//u', $this->vorto, -1, PREG_SPLIT_NO_EMPTY);
         for ($i = 0; $i < count($literoj); ++$i) {
@@ -148,7 +156,8 @@ class Vorto
         return $ebloj;
     }
 
-    protected function serĉiLitere(string $karto): array {
+    protected function serĉiLitere(string $karto): array
+    {
         $ebloj = [];
         $peto = "SELECT vorto FROM vortoj WHERE vorto LIKE '" . $this->vorto .
             $karto . "%'" . $this->petero();
@@ -162,7 +171,8 @@ class Vorto
         return $ebloj;
     }
 
-    protected function petero() {
+    protected function petero()
+    {
         $parto = '';
         if (!empty($this->celvortoj)) {
             $parto = " AND vorto NOT IN ('" . join("','", $this->celvortoj) . "')";

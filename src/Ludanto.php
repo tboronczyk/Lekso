@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Lekso;
 
 /**
@@ -17,7 +18,8 @@ class Ludanto
     /**
      * Konstruilo
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->kartoj = [];
         $this->poentoj = 0;
         $this->pasita = false;
@@ -29,7 +31,8 @@ class Ludanto
      * @param Amaso $amaso la amaso de kartoj
      * @param int $kvanto kiom da kartoj estu prenita
      */
-    public function preni(Amaso $amaso, int $kvanto): int {
+    public function preni(Amaso $amaso, int $kvanto): int
+    {
         if ($kvanto < 1) {
             throw new \Exception('Preno de malpli ol unu karto');
         }
@@ -42,4 +45,3 @@ class Ludanto
         return $i;
     }
 }
-

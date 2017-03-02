@@ -1,7 +1,5 @@
 <?php
 declare(strict_types=1);
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 chdir(dirname(__FILE__));
 require_once '../vendor/autoload.php';
@@ -13,7 +11,8 @@ use Lekso\Karto;
 
 class LudantoTest extends TestCase
 {
-    public function testPreni() {
+    public function testPreni()
+    {
         $ludanto = new Ludanto();
         $amaso = new Amaso(['A' => 1, 'B' => 2, 'C' => 3]);
 
@@ -21,7 +20,8 @@ class LudantoTest extends TestCase
         $this->assertEquals(['C', 'C', 'C'], $ludanto->kartoj);
     }
 
-    public function testPreniTroMulte() {
+    public function testPreniTroMulte()
+    {
         $ludanto = new Ludanto();
         $amaso = new Amaso(['A' => 1]);
 
