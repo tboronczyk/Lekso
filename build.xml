@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Lekso" default="fari">
+
+ <property name="aplkDosejo" value="${phing.dir}/vendor/bin"/>
+
+ <target name="kontroli">
+  <echo msg="Kontroli sintakson de PHP fontdosieroj"/>
+  <exec checkreturn="true" passthru="true"
+   command="'${aplkDosejo}/phpcs' --ignore=vendor --standard=PSR2
+    --exclude=PSR1.Files.SideEffects,PSR1.Methods.CamelCapsMethodName 
+    **/*.php"/>
+ </target>
+
+ <target name="fari" depends="kontroli">
+  <echo msg="Konstrui la aplikadon"/>
+  <exec checkreturn="true" passthru="true" command="php datumoj.php"/>
+ </target>
+
+ <target name="purigi">
+  <echo msg="Purigi la fontdosierujon"/>
+  <delete>
+   <fileset dir="${phing.dir}">
+    <include name="datumoj.db"/>
+    <include name="piv2.xml"/>
+   </fileset>
+  </delete>
+ </target>
+
+ <target name="testi" depends="fari">
+  <echo msg="Alvoki partajn testojn"/>
+  <exec checkreturn="true" passthru="true" command="'${aplkDosejo}/phpunit' tests"/>
+ </target>
+
+</project>
+
