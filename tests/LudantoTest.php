@@ -1,13 +1,15 @@
 <?php
 declare(strict_types=1);
 
-chdir(dirname(__FILE__));
-require_once '../vendor/autoload.php';
+namespace Lekso\Testoj;
 
 use PHPUnit\Framework\TestCase;
 use Lekso\Ludanto;
 use Lekso\Amaso;
 use Lekso\Karto;
+
+chdir(dirname(__FILE__));
+require_once '../vendor/autoload.php';
 
 class LudantoTest extends TestCase
 {

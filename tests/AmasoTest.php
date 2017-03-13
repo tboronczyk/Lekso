@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
 
-chdir(dirname(__FILE__));
-require_once '../vendor/autoload.php';
+namespace Lekso\Testoj;
 
 use PHPUnit\Framework\TestCase;
 use Lekso\Amaso;
+
+chdir(dirname(__FILE__));
+require_once '../vendor/autoload.php';
 
 class AmasoTest extends TestCase
 {
