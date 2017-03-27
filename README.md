@@ -1,8 +1,8 @@
-#Lekso
+# Lekso
 
 > La literuma kartludo de ŝanĝantaj vortoj
 
-[![Build Status](https://travis-ci.org/tboronczyk/Lekso.svg?branch=master)](https://travis-ci.org/tboronczyk/Lekso)
+[![Build Status](https://travis-ci.org/tboronczyk/Lekso.svg?branch=master)](https://travis-ci.org/tboronczyk/Lekso) [![codecov](https://codecov.io/gh/tboronczyk/Lekso/branch/master/graph/badge.svg)](https://codecov.io/gh/tboronczyk/Lekso)
 
 Ĉi tio estas simulado de la kartludo Lekso. Antaŭ vi lanĉas ĝin, vi devas:
 

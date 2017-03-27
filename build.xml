@@ -28,7 +28,8 @@
 
  <target name="testi" depends="fari">
   <echo msg="Alvoki partajn testojn"/>
-  <exec checkreturn="true" passthru="true" command="'${aplkDosejo}/phpunit' tests"/>
+  <exec checkreturn="true" passthru="true"
+   command="'${aplkDosejo}/phpunit' --coverage-clover=coverage.xml tests"/>
  </target>
 
 </project>

@@ -1,3 +1,4 @@
 datumoj.db
 piv2.xml
 vendor/*
+tests/coverage.xml
